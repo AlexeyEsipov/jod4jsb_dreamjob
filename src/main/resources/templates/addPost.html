@@ -6,6 +6,7 @@
 </head>
 <body>
 <div class="container">
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Работа мечты</a>
         <button class="navbar-toggler"
@@ -20,31 +21,29 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-item nav-link" th:href="@{/index}">Главная</a>
-                <a class="nav-item nav-link active" href="#">Вакансии<span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" th:href="@{/formAddPost}">Добавить вакансию</a>
+                <a class="nav-item nav-link" th:href="@{/posts}">Вакансии</a>
+                <a class="nav-item nav-link active" href="#">Добавить вакансию<span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" th:href="@{/candidates}">Кандидаты</a>
             </div>
         </div>
     </nav>
+
     <div class="row">
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Имя</th>
-                <th scope="col">Описание</th>
-                <th scope="col">Дата</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="post: ${posts}">
-                <td th:text="${post.id}"></td>
-                <td th:text="${post.name}"></td>
-                <td th:text="${post.description}"></td>
-                <td th:text="${post.created}"></td>
-            </tr>
-            </tbody>
-        </table>
+        <div class="card" style="width: 100%">
+            <div class="card-header">
+                Новая вакансия.
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <label>Имя
+                            <input type="text" class="form-control">
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Сохранить</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 </body>
