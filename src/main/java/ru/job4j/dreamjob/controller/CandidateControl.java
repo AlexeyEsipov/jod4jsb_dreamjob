@@ -15,4 +15,11 @@ public class CandidateControl {
         model.addAttribute("candidates", store.findAll());
         return "candidates";
     }
+
+    @GetMapping("/formAddCandidate")
+    public String addCandidate(Model model) {
+        model.addAttribute("candidate",
+                new Candidate(0, "Заполните поле", "Заполните поле"));
+        return "addCandidate";
+    }
 }
