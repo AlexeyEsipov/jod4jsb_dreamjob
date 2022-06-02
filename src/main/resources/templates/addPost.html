@@ -9,15 +9,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Работа мечты</a>
-        <button class="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup"
-                aria-expanded="false"
-                aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <th:block th:include="blocks/button :: button" />
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-item nav-link" th:href="@{/index}">Главная</a>
@@ -35,14 +27,13 @@
                 Новая вакансия.
             </div>
             <div class="card-body">
-                <form>
+                <form th:action="@{/createPost}" method="POST">
+                    <input type="hidden" name="id" value="0"/>
                     <div class="form-group">
-                        <label>Название
-                            <input type="text" class="form-control">
-                        </label>
-                        <label>Описание
-                            <input type="text" class="form-control">
-                        </label>
+                        <label for="name">Название</label>
+                            <input type="text" class="form-control" name="name" id="name">
+                        <label for="description">Описание</label>
+                            <input type="text" class="form-control" name="description" id="description">
                     </div>
                     <button type="submit" class="btn btn-primary">Сохранить</button>
                 </form>
