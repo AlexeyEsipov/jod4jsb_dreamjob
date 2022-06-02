@@ -6,9 +6,7 @@ import java.util.concurrent.TimeUnit;
 public class Post {
     private int id;
     private String name;
-
     private String description;
-
     private final LocalDateTime created =
             LocalDateTime.now().truncatedTo(TimeUnit.MINUTES.toChronoUnit());
 
