@@ -11,6 +11,7 @@ public class Candidate implements Serializable {
     private String description;
     private City city;
     private boolean visible;
+    private byte[] photo;
     private final LocalDateTime created =
             LocalDateTime.now().truncatedTo(TimeUnit.MINUTES.toChronoUnit());
 
@@ -67,6 +68,14 @@ public class Candidate implements Serializable {
 
     public void setCity(City city) {
         this.city = city;
+    }
+
+    public byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
     }
 
     @Override

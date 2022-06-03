@@ -25,6 +25,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Имя</th>
+                <th scope="col">Фото</th>
                 <th scope="col">Опыт кандидата</th>
                 <th scope="col">Город</th>
                 <th scope="col">Дата</th>
@@ -44,6 +45,9 @@
                     <span th:if="${!candidate.visible}">
                         <i class="fa fa-square-o"></i>
                     </span>
+                </td>
+                <td>
+                    <img th:width="150" th:high="150" th:src="@{|/photoCandidate/${candidate.id}|}" alt="Photo">
                 </td>
                 <td th:text="${candidate.description}"></td>
                 <td th:each="city : ${cities}" th:if="${city.id}==${candidate.city.id}" th:text="${city.name}" ></td>
