@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.job4j.dreamjob.model.Candidate;
-import ru.job4j.dreamjob.store.CandidateStore;
+import ru.job4j.dreamjob.service.CandidateService;
 
 @Controller
 public class CandidateControl {
-    private final CandidateStore store = CandidateStore.instOf();
+    private final CandidateService store = CandidateService.instOf();
 
     @GetMapping("/candidates")
     public String candidates(Model model) {
