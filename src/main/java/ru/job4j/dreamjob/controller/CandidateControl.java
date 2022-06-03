@@ -28,7 +28,7 @@ public class CandidateControl {
     @GetMapping("/formAddCandidate")
     public String addCandidate(Model model) {
         model.addAttribute("candidate",
-                new Candidate(0, "stub", "stub"));
+                new Candidate(0, "stub", "stub", false));
         return "addCandidate";
     }
 

@@ -8,13 +8,19 @@ public class Candidate {
     private int id;
     private String name;
     private String description;
+
+    private boolean visible;
     private final LocalDateTime created =
             LocalDateTime.now().truncatedTo(TimeUnit.MINUTES.toChronoUnit());
 
-    public Candidate(int id, String name, String description) {
+    public Candidate(int id, String name, String description, boolean visible) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.visible = visible;
+    }
+
+    public Candidate() {
     }
 
     public int getId() {
@@ -43,6 +49,14 @@ public class Candidate {
 
     public LocalDateTime getCreated() {
         return created;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 
     @Override

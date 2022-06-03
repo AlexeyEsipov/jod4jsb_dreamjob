@@ -16,9 +16,9 @@ public class PostStore {
     private final AtomicInteger id = new AtomicInteger(3);
 
     private PostStore() {
-        posts.put(1, new Post(1, "Junior Java Job", "Junior"));
-        posts.put(2, new Post(2, "Middle Java Job", "Middle"));
-        posts.put(3, new Post(3, "Senior Java Job", "Senior"));
+        posts.put(1, new Post(1, "Junior Java Job", "Junior", true));
+        posts.put(2, new Post(2, "Middle Java Job", "Middle", false));
+        posts.put(3, new Post(3, "Senior Java Job", "Senior", true));
     }
 
     public Collection<Post> findAll() {

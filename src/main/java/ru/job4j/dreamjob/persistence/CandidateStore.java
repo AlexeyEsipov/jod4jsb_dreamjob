@@ -16,9 +16,9 @@ public class CandidateStore {
     private final AtomicInteger id = new AtomicInteger(3);
 
     private CandidateStore() {
-        candidates.put(1, new Candidate(1, "Andrew", "Big"));
-        candidates.put(2, new Candidate(2, "Petr", "Small"));
-        candidates.put(3, new Candidate(3, "Tom", "Middle"));
+        candidates.put(1, new Candidate(1, "Andrew", "Big", true));
+        candidates.put(2, new Candidate(2, "Petr", "Small", false));
+        candidates.put(3, new Candidate(3, "Tom", "Middle", true));
     }
 
     public Collection<Candidate> findAll() {

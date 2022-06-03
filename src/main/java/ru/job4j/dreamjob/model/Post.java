@@ -8,13 +8,18 @@ public class Post {
     private int id;
     private String name;
     private String description;
+    private boolean visible;
     private final LocalDateTime created =
             LocalDateTime.now().truncatedTo(TimeUnit.MINUTES.toChronoUnit());
 
-    public Post(int id, String name, String description) {
+    public Post(int id, String name, String description, boolean visible) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.visible = visible;
+    }
+
+    private Post() {
     }
 
     public int getId() {
@@ -33,6 +38,26 @@ public class Post {
         this.name = name;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -48,17 +73,5 @@ public class Post {
     @Override
     public int hashCode() {
         return Objects.hash(id);
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public LocalDateTime getCreated() {
-        return created;
     }
 }
