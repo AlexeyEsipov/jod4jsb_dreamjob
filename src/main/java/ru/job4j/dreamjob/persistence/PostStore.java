@@ -6,6 +6,8 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import ru.job4j.dreamjob.model.City;
 import ru.job4j.dreamjob.model.Post;
 
 @ThreadSafe
@@ -16,9 +18,9 @@ public class PostStore {
     private final AtomicInteger id = new AtomicInteger(3);
 
     private PostStore() {
-        posts.put(1, new Post(1, "Junior Java Job", "Junior", true));
-        posts.put(2, new Post(2, "Middle Java Job", "Middle", false));
-        posts.put(3, new Post(3, "Senior Java Job", "Senior", true));
+        posts.put(1, new Post(1, "Junior Java Job", "Junior", new City(1), true));
+        posts.put(2, new Post(2, "Middle Java Job", "Middle", new City(2), false));
+        posts.put(3, new Post(3, "Senior Java Job", "Senior", new City(3), true));
     }
 
     public Collection<Post> findAll() {

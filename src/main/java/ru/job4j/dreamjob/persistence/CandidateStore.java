@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import ru.job4j.dreamjob.model.Candidate;
+import ru.job4j.dreamjob.model.City;
 
 @ThreadSafe
 @Repository
@@ -16,9 +17,9 @@ public class CandidateStore {
     private final AtomicInteger id = new AtomicInteger(3);
 
     private CandidateStore() {
-        candidates.put(1, new Candidate(1, "Andrew", "Big", true));
-        candidates.put(2, new Candidate(2, "Petr", "Small", false));
-        candidates.put(3, new Candidate(3, "Tom", "Middle", true));
+        candidates.put(1, new Candidate(1, "Andrew", "Big", new City(1), true));
+        candidates.put(2, new Candidate(2, "Petr", "Small", new City(2), false));
+        candidates.put(3, new Candidate(3, "Tom", "Middle", new City(3), true));
     }
 
     public Collection<Candidate> findAll() {

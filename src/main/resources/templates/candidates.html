@@ -25,7 +25,8 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Имя</th>
-                <th scope="col">Описание</th>
+                <th scope="col">Опыт кандидата</th>
+                <th scope="col">Город</th>
                 <th scope="col">Дата</th>
             </tr>
             </thead>
@@ -45,6 +46,7 @@
                     </span>
                 </td>
                 <td th:text="${candidate.description}"></td>
+                <td th:each="city : ${cities}" th:if="${city.id}==${candidate.city.id}" th:text="${city.name}" ></td>
                 <td th:text="${candidate.created}"></td>
             </tr>
             </tbody>
