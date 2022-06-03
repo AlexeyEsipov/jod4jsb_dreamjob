@@ -38,6 +38,9 @@
                     <a th:href="@{|/formUpdateCandidate/${candidate.id}|}">
                         <i class="fa fa-edit"></i>
                     </a>
+                    <a th:href="@{|/deleteCandidate/${candidate.id}|}">
+                        <i class="fa fa-trash"></i>
+                    </a>
                     <span th:text="${candidate.name}"></span>
                     <span th:if="${candidate.visible}">
                         <i class="fa fa-check-square-o"></i>

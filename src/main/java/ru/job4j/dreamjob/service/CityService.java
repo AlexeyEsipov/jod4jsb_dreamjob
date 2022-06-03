@@ -7,7 +7,7 @@ import java.util.*;
 
 @Service
 public class CityService {
-    private Map<Integer, City> cities = new HashMap<>();
+    private final Map<Integer, City> cities = new HashMap<>();
 
     public CityService() {
         cities.put(1, new City(1, "Москва"));

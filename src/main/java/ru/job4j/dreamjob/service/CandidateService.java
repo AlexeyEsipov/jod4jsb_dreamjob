@@ -30,4 +30,8 @@ public class CandidateService {
     public Collection<Candidate> findAll() {
         return store.findAll();
     }
+
+    public void delete(int id) {
+        store.delete(id);
+    }
 }

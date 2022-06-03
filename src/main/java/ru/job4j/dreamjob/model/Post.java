@@ -14,6 +14,12 @@ public class Post implements Serializable {
     private final LocalDateTime created =
             LocalDateTime.now().truncatedTo(TimeUnit.MINUTES.toChronoUnit());
 
+    public Post(int id, String name, City city) {
+        this.id = id;
+        this.name = name;
+        this.city = city;
+    }
+
     public Post(int id, String name, String description, City city, boolean visible) {
         this.id = id;
         this.name = name;

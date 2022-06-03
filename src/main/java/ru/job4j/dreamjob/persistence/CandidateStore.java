@@ -38,4 +38,8 @@ public class CandidateStore {
     public void update(Candidate candidate) {
         candidates.replace(candidate.getId(), candidate);
     }
+
+    public void delete(int id) {
+        candidates.remove(id);
+    }
 }

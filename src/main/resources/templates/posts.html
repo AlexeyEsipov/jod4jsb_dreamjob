@@ -37,6 +37,9 @@
                     <a th:href="@{|/formUpdatePost/${post.id}|}">
                         <i class="fa fa-edit"></i>
                     </a>
+                    <a th:href="@{|/deletePost/${post.id}|}">
+                        <i class="fa fa-trash"></i>
+                    </a>
                     <span th:text="${post.name}"></span>
                     <span th:if="${post.visible}">
                         <i class="fa fa-check-square-o"></i>

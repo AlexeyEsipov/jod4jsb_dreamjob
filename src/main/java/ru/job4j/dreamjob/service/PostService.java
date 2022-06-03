@@ -4,14 +4,14 @@ import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Service;
 import java.util.Collection;
 import ru.job4j.dreamjob.model.Post;
-import ru.job4j.dreamjob.persistence.PostStore;
+import ru.job4j.dreamjob.store.PostDBStore;
 
 @ThreadSafe
 @Service
 public class PostService {
-    private final PostStore store;
+    private final PostDBStore store;
 
-    public PostService(PostStore store) {
+    public PostService(PostDBStore store) {
         this.store = store;
     }
 
@@ -28,6 +28,13 @@ public class PostService {
     }
 
     public Collection<Post> findAll() {
-        return store.findAll();
+        Collection<Post> posts = store.findAll();
+        CityService cityService = new CityService();
+        posts.forEach(post -> post.setCity(cityService.findById(post.getCity().getId())));
+        return posts;
+    }
+
+    public void delete(int id) {
+        store.delete(id);
     }
 }

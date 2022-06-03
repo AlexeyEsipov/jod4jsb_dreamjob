@@ -61,6 +61,12 @@ public class CandidateControl {
                 .body(new ByteArrayResource(candidate.getPhoto()));
     }
 
+    @GetMapping("deleteCandidate/{candidateId}")
+    public String deleteCandidate(@PathVariable("candidateId") int id) {
+        candidateService.delete(id);
+        return "redirect:/candidates";
+    }
+
     @PostMapping("/updateCandidate")
     public String updateCandidate(@ModelAttribute Candidate candidate,
                                   @RequestParam("file") MultipartFile file) throws IOException {

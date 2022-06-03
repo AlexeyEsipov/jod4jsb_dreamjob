@@ -15,6 +15,7 @@ import ru.job4j.dreamjob.service.PostService;
 @ThreadSafe
 @Controller
 public class PostControl {
+
     private final PostService postService;
     private final CityService cityService;
 
@@ -33,7 +34,7 @@ public class PostControl {
     @GetMapping("/formAddPost")
     public String addPost(Model model) {
         model.addAttribute("post",
-                new Post(0, "stub", "stub", new City(), false));
+                new Post(0, "stub", "stub", new City(), true));
         model.addAttribute("cities", cityService.getAllCities());
         return "addPost";
     }
@@ -43,6 +44,12 @@ public class PostControl {
         model.addAttribute("post", postService.findById(id));
         model.addAttribute("cities", cityService.getAllCities());
         return "updatePost";
+    }
+
+    @GetMapping("/deletePost/{postId}")
+    public String deletePost(@PathVariable("postId") int id) {
+        postService.delete(id);
+        return "redirect:/posts";
     }
 
     @PostMapping("/updatePost")
