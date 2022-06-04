@@ -49,7 +49,7 @@
                     </span>
                 </td>
                 <td th:text="${post.description}"></td>
-                <td th:each="city : ${cities}" th:if="${city.id}==${post.city.id}" th:text="${city.name}" ></td>
+                <td th:text="${post.city.name}"></td>
                 <td th:text="${post.created}"></td>
             </tr>
             </tbody>

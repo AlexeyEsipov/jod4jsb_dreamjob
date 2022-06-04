@@ -4,14 +4,14 @@ import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Service;
 import java.util.Collection;
 import ru.job4j.dreamjob.model.Candidate;
-import ru.job4j.dreamjob.persistence.CandidateStore;
+import ru.job4j.dreamjob.store.CandidateDBStore;
 
 @ThreadSafe
 @Service
 public class CandidateService {
-    private final CandidateStore store;
+    private final CandidateDBStore store;
 
-    public CandidateService(CandidateStore store) {
+    public CandidateService(CandidateDBStore store) {
         this.store = store;
     }
 

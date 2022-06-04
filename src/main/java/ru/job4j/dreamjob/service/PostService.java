@@ -28,10 +28,7 @@ public class PostService {
     }
 
     public Collection<Post> findAll() {
-        Collection<Post> posts = store.findAll();
-        CityService cityService = new CityService();
-        posts.forEach(post -> post.setCity(cityService.findById(post.getCity().getId())));
-        return posts;
+        return store.findAll();
     }
 
     public void delete(int id) {
