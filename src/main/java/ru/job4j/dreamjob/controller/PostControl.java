@@ -53,12 +53,16 @@ public class PostControl {
 
     @PostMapping("/updatePost")
     public String updatePost(@ModelAttribute Post post) {
+        int cityId = post.getCity().getId();
+        post.setCity(cityService.findById(cityId));
         postService.update(post);
         return "redirect:/posts";
     }
 
     @PostMapping("/createPost")
     public String createPost(@ModelAttribute Post post) {
+        int cityId = post.getCity().getId();
+        post.setCity(cityService.findById(cityId));
         postService.add(post);
         return "redirect:/posts";
     }

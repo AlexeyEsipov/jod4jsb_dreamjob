@@ -71,6 +71,8 @@ public class CandidateControl {
     public String updateCandidate(@ModelAttribute Candidate candidate,
                                   @RequestParam("file") MultipartFile file) throws IOException {
         candidate.setPhoto(file.getBytes());
+        int cityId = candidate.getCity().getId();
+        candidate.setCity(cityService.findById(cityId));
         candidateService.update(candidate);
         return "redirect:/candidates";
     }
@@ -79,6 +81,8 @@ public class CandidateControl {
     public String createCandidate(@ModelAttribute Candidate candidate,
                                   @RequestParam("file") MultipartFile file) throws IOException {
         candidate.setPhoto(file.getBytes());
+        int cityId = candidate.getCity().getId();
+        candidate.setCity(cityService.findById(cityId));
         candidateService.add(candidate);
         return "redirect:/candidates";
     }
