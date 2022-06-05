@@ -14,11 +14,11 @@ import ru.job4j.dreamjob.model.User;
 
 @ThreadSafe
 @Controller
-public class UserController {
+public class UserControl {
 
     private final UserService userService;
 
-    public UserController(UserService userService) {
+    public UserControl(UserService userService) {
         this.userService = userService;
     }
 
@@ -27,15 +27,6 @@ public class UserController {
                                    @RequestParam(name = "fail", required = false) Boolean fail) {
         model.addAttribute("fail", fail != null);
         return "registration";
-    }
-
-    @PostMapping("/registration")
-    public String registration(Model model, @ModelAttribute User user) {
-        Optional<User> regUser = userService.add(user);
-        if (regUser.isEmpty()) {
-            return "redirect:/fail";
-        }
-        return "redirect:/success";
     }
 
     @GetMapping("/success")
@@ -47,11 +38,6 @@ public class UserController {
     public String fail(Model model) {
         model.addAttribute("message", "Пользователь с такой почтой уже существует");
         return "fail";
-    }
-
-    @PostMapping("/successRedirect")
-    public String successRedirect(Model model) {
-        return "redirect:/index";
     }
 
     @GetMapping("/loginPage")
@@ -69,6 +55,20 @@ public class UserController {
         if (userDb.isEmpty()) {
             return "redirect:/loginPage?fail=true";
         }
+        return "redirect:/index";
+    }
+
+    @PostMapping("/registration")
+    public String registration(Model model, @ModelAttribute User user) {
+        Optional<User> regUser = userService.add(user);
+        if (regUser.isEmpty()) {
+            return "redirect:/fail";
+        }
+        return "redirect:/success";
+    }
+
+    @PostMapping("/successRedirect")
+    public String successRedirect(Model model) {
         return "redirect:/index";
     }
 }
