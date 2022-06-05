@@ -24,19 +24,16 @@
                 <a class="nav-item nav-link" th:href="@{/formAddPost}">Добавить вакансию</a>
                 <a class="nav-item nav-link" th:href="@{/candidates}">Кандидаты</a>
                 <a class="nav-item nav-link" th:href="@{/formAddCandidate}">Добавить кандидата</a>
-                <a class="nav-item nav-link" th:href="@{/formRegistration}">Регистрация</a>
             </div>
         </div>
     </nav>
     <div class="row pt-3">
         <div class="card" style="width: 100%">
-            <div class="card-header">
-                Ошибка - Пользователь с такой почтой уже существует. Попробуйте зарегистрироваться еще раз.
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <p th:text="${message}"></p>
             </div>
             <div class="card-body">
-                <form th:action="@{/failRedirect}" method="POST">
-                    <button type="submit" class="btn btn-primary mt-3">Вернуться</button>
-                </form>
+                <a class="nav-item nav-link" th:href="@{/formRegistration}">Регистрация</a>
             </div>
         </div>
     </div>
