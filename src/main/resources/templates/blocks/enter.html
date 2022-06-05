@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<div th:fragment="enter">
+    <a th:if="${user.name == 'Гость'}" class="nav-item nav-link" th:href="@{/formRegistration}">Регистрация</a>
+    <a class="nav-item nav-link" th:if="${user.name == 'Гость'}" th:href="@{/loginPage}">
+        <span th:text="${user.name}"></span>
+        <span> | Войти</span>
+    </a>
+    <a class="nav-item nav-link" th:if="${user.name != 'Гость'}" th:href="@{/logout}">
+        <span th:text="${user.name}"></span>
+        <span> | Выйти</span>
+    </a>
+</div>
+</html>

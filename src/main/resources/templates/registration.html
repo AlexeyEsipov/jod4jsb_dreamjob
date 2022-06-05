@@ -7,7 +7,7 @@
 <body>
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Работа мечты<small th:text="${user}"></small></a>
+        <a class="navbar-brand" href="#">Работа мечты</a>
         <button class="navbar-toggler"
                 type="button"
                 data-toggle="collapse"
@@ -24,7 +24,9 @@
                 <a class="nav-item nav-link" th:href="@{/formAddPost}">Добавить вакансию</a>
                 <a class="nav-item nav-link" th:href="@{/candidates}">Кандидаты</a>
                 <a class="nav-item nav-link" th:href="@{/formAddCandidate}">Добавить кандидата</a>
-                <a class="nav-item nav-link active" href="#">Регистрация<span class="sr-only">(current)</span></a>
+                <div class="enter">
+                    <th:block th:include="blocks/enter :: div"/>
+                </div>
             </div>
         </div>
     </nav>

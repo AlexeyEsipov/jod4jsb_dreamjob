@@ -12,6 +12,9 @@ import java.util.Optional;
 import ru.job4j.dreamjob.service.UserService;
 import ru.job4j.dreamjob.model.User;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 @ThreadSafe
 @Controller
 public class UserControl {
@@ -24,14 +27,33 @@ public class UserControl {
 
     @GetMapping("/formRegistration")
     public String formRegistration(Model model,
-                                   @RequestParam(name = "fail", required = false) Boolean fail) {
+                                   @RequestParam(name = "fail", required = false) Boolean fail,
+                                   HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            user = new User();
+            user.setName("Гость");
+        }
+        model.addAttribute("user", user);
         model.addAttribute("fail", fail != null);
         return "registration";
     }
 
     @GetMapping("/success")
-    public String success(Model model) {
+    public String success(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            user = new User();
+            user.setName("Гость");
+        }
+        model.addAttribute("user", user);
         return "success";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/index";
     }
 
     @GetMapping("/fail")
@@ -48,13 +70,15 @@ public class UserControl {
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute User user) {
+    public String login(@ModelAttribute User user, HttpServletRequest req) {
         Optional<User> userDb = userService.findUserByEmailAndPwd(
                 user.getEmail(), user.getPassword()
         );
         if (userDb.isEmpty()) {
             return "redirect:/loginPage?fail=true";
         }
+        HttpSession session = req.getSession();
+        session.setAttribute("user", userDb.get());
         return "redirect:/index";
     }
 
@@ -68,7 +92,13 @@ public class UserControl {
     }
 
     @PostMapping("/successRedirect")
-    public String successRedirect(Model model) {
-        return "redirect:/index";
+    public String successRedirect(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            user = new User();
+            user.setName("Гость");
+        }
+        model.addAttribute("user", user);
+        return "redirect:/loginPage";
     }
 }
