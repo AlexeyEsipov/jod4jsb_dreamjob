@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS post;
 DROP TABLE IF EXISTS candidate;
 DROP TABLE IF EXISTS city;
+DROP TABLE IF EXISTS users;
 CREATE TABLE IF NOT EXISTS city (
                                     city_id SERIAL PRIMARY KEY ,
                                     city_name TEXT
@@ -23,4 +24,11 @@ CREATE TABLE IF NOT EXISTS candidate (
                                          can_visible bool,
                                          can_city_id int,
                                          can_photo bytea
-)
+);
+CREATE TABLE IF NOT EXISTS users (
+                                     id SERIAL PRIMARY KEY,
+                                     name TEXT,
+                                     email TEXT,
+                                     password TEXT,
+                                     CONSTRAINT email_unique UNIQUE (email)
+);

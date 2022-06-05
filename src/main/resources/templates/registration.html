@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Работа мечты!</title>
+    <th:block th:include="blocks/css :: head"/>
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Работа мечты<small th:text="${user}"></small></a>
+        <th:block th:include="blocks/button :: button" />
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" th:href="@{/index}">Главная</a>
+                <a class="nav-item nav-link" th:href="@{/posts}">Вакансии</a>
+                <a class="nav-item nav-link" th:href="@{/formAddPost}">Добавить вакансию</a>
+                <a class="nav-item nav-link" th:href="@{/candidates}">Кандидаты</a>
+                <a class="nav-item nav-link" th:href="@{/formAddCandidate}">Добавить кандидата</a>
+                <a class="nav-item nav-link active" href="#">Регистрация<span class="sr-only">(current)</span></a>
+            </div>
+        </div>
+    </nav>
+    <div class="row pt-3">
+        <div class="card" style="width: 100%">
+            <div class="card-header">
+                Регистрация
+            </div>
+            <div class="card-body">
+                <form th:action="@{/registration}" method="POST">
+                    <div class="form-group">
+                        <input type="hidden" name="id" value="0"/>
+                        <label for="name">Имя</label>
+                        <input type="text" class="form-control" name="name" id="name" required>
+                        <label for="email">Почта</label>
+                        <input type="text" class="form-control" name="email" id="email" required>
+                        <label for="password">Пароль</label>
+                        <input type="text" class="form-control" name="password" id="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Сохранить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
