@@ -100,4 +100,5 @@ public class CandidateControl {
         }
         model.addAttribute("user", user);
     }
+
 }
