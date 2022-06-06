@@ -10,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 import ru.job4j.dreamjob.model.Candidate;
@@ -18,8 +18,6 @@ import ru.job4j.dreamjob.model.City;
 import ru.job4j.dreamjob.model.User;
 import ru.job4j.dreamjob.service.CandidateService;
 import ru.job4j.dreamjob.service.CityService;
-
-import javax.servlet.http.HttpSession;
 
 @ThreadSafe
 @Controller
@@ -34,12 +32,7 @@ public class CandidateControl {
 
     @GetMapping("/candidates")
     public String candidates(Model model, HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        if (user == null) {
-            user = new User();
-            user.setName("Гость");
-        }
-        model.addAttribute("user", user);
+        setUser(model, session);
         model.addAttribute("candidates", candidateService.findAll());
         model.addAttribute("cities", cityService.getAllCities());
         return "candidates";
@@ -47,12 +40,7 @@ public class CandidateControl {
 
     @GetMapping("/formAddCandidate")
     public String addCandidate(Model model, HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        if (user == null) {
-            user = new User();
-            user.setName("Гость");
-        }
-        model.addAttribute("user", user);
+        setUser(model, session);
         model.addAttribute("candidate",
                 new Candidate(0, "stub", "stub", new City(), false));
         model.addAttribute("cities", cityService.getAllCities());
@@ -62,12 +50,7 @@ public class CandidateControl {
     @GetMapping("/formUpdateCandidate/{candidateId}")
     public String formUpdateCandidate(Model model, @PathVariable("candidateId") int id,
                                       HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        if (user == null) {
-            user = new User();
-            user.setName("Гость");
-        }
-        model.addAttribute("user", user);
+        setUser(model, session);
         model.addAttribute("candidate", candidateService.findById(id));
         model.addAttribute("cities", cityService.getAllCities());
         return "updateCandidate";
@@ -107,5 +90,14 @@ public class CandidateControl {
         candidate.setCity(cityService.findById(cityId));
         candidateService.add(candidate);
         return "redirect:/candidates";
+    }
+
+    private void setUser(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            user = new User();
+            user.setName("Гость");
+        }
+        model.addAttribute("user", user);
     }
 }
