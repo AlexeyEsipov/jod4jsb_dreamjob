@@ -20,6 +20,7 @@ public class UserDBStore {
     }
 
     public Optional<User> add(User user) {
+        Optional<User> result = Optional.empty();
         try (Connection cn = pool.getConnection();
              PreparedStatement ps = cn.prepareStatement(
                      "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
@@ -32,16 +33,17 @@ public class UserDBStore {
             try (ResultSet id = ps.getGeneratedKeys()) {
                 if (id.next()) {
                     user.setId(id.getInt(1));
+                result = Optional.of(user);
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            user = null;
         }
-        return Optional.ofNullable(user);
+        return result;
     }
 
     public Optional<User> findByEmailAndPwd(String email, String password) {
+        Optional<User> result = Optional.empty();
         try (Connection cn = pool.getConnection();
              PreparedStatement ps = cn.prepareStatement(
                      "SELECT * FROM users WHERE email = ? and password = ?")
@@ -50,7 +52,7 @@ public class UserDBStore {
             ps.setString(2, password);
             try (ResultSet it = ps.executeQuery()) {
                 if (it.next()) {
-                    return Optional.of(new User(
+                    result = Optional.of(new User(
                             it.getInt("id"),
                             it.getString("name"),
                             it.getString("email"),
@@ -61,7 +63,7 @@ public class UserDBStore {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return Optional.empty();
+        return result;
     }
 
 }
