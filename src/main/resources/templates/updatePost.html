@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
+<head th:replace="blocks/css :: css">
     <title>Работа мечты!</title>
-    <th:block th:include="blocks/css :: head"/>
 </head>
 <body>
 <div class="container">
@@ -24,9 +23,7 @@
                 <a class="nav-item nav-link active" href="#">Добавить вакансию<span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" th:href="@{/candidates}">Кандидаты</a>
                 <a class="nav-item nav-link" th:href="@{/formAddCandidate}">Добавить кандидата</a>
-                <div class="enter">
-                    <th:block th:include="blocks/enter :: div"/>
-                </div>
+                <div th:replace="blocks/enter :: enter"></div>
             </div>
         </div>
     </nav>
